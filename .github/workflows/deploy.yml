@@ -23,5 +23,8 @@ jobs:
             set -e
             cd /home/ubuntu/workspace/compose-demo
             git pull origin main
-            docker compose up -d --build
+            # Build the webapp image without using any cache
+            docker compose build --no-cache webapp
+            # Force recreate all services to apply changes
+            docker compose up -d --force-recreate
             echo "Deployment successful!"
