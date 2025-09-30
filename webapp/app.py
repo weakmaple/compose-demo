@@ -23,7 +23,7 @@ def get_hit_count():
 @app.route('/')
 def hello():
     count = get_hit_count()
-    return 'Hello Docker! I have been seen {} times.\n'.format(count)
+    return 'Hello, CI/CD! This is a new version. I have been seen {} times.'.format(count)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
