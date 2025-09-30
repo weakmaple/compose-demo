@@ -20,7 +20,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -e
             cd /home/ubuntu/workspace/compose-demo
             git pull origin main
-            docker-compose up -d --build
+            docker compose up -d --build
             echo "Deployment successful!"
