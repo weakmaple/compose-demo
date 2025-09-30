@@ -22,5 +22,21 @@ services:
     volumes:
       - redis-data:/data
 
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "8083:9090"
+    depends_on:
+      - webapp
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "8084:3000"
+    depends_on:
+      - prometheus
+
 volumes:
   redis-data:

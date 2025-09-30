@@ -1,8 +1,10 @@
 import time
 import redis
 from flask import Flask
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 # 关键点：这里的 host='redis' 是我们 docker-compose.yml 文件中定义的 redis 服务的名字
 # Docker Compose 会自动处理网络，让 webapp 容器能通过服务名找到 redis 容器
 cache = redis.Redis(host='redis', port=6379)
